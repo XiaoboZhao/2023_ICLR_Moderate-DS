@@ -96,7 +96,7 @@ def main(args):
         scheduler.step()
         
     if args.save:
-        save_path = os.path.join(args.save_dir, "last.pth")
+        save_path = os.path.join(save_dir, "last.pth")
         torch.save(model.state_dict(), save_path)
         
     print("Ended at ", time.asctime( time.localtime(time.time()) ))
