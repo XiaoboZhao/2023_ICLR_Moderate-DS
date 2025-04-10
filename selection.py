@@ -47,7 +47,7 @@ def get_features(args):
         transforms.Normalize(TRAIN_MEAN, TRAIN_STD),
     ])
     data_train = get_dataset(args, transform, train=True)
-    trainloader = DataLoader(data_train, batch_size=64, num_workers=5, pin_memory=True)
+    trainloader = DataLoader(data_train, batch_size=64, num_workers=2, pin_memory=True)
     
     targets, features = [], []
     for _, img, target in tqdm(trainloader):

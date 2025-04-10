@@ -50,8 +50,8 @@ def main(args):
         data_train = get_dataset(args, transform=train_transform, train=True)
         
     data_test = get_dataset(args, transform=test_transform, train=False)        
-    trainloader = DataLoader(data_train, batch_size=args.batch_size, pin_memory=True, num_workers=5, shuffle=True)
-    testloader = DataLoader(data_test, batch_size=32, pin_memory=True, num_workers=4)
+    trainloader = DataLoader(data_train, batch_size=args.batch_size, pin_memory=True, num_workers=2, shuffle=True)
+    testloader = DataLoader(data_test, batch_size=32, pin_memory=True, num_workers=2)
     
     print("trainset size:", len(trainloader.dataset))
     print("Starting at ",time.asctime( time.localtime(time.time()) ))
