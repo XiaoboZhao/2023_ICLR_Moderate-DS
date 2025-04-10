@@ -86,7 +86,7 @@ def main(args):
         train_loss, train_acc = np.mean(losses), np.mean(accs)
         eval_loss, eval_acc = eval(model, testloader, criterion, device)
         print("Epoch: {}, train loss: {:.4f}, train accs: {:.4f}, "
-            "val loss: {:.4f}, val acc: {:.4f}".format(epoch, train_loss, train_acc*100, eval_loss, eval_acc*100))
+            "val loss: {:.4f}, val acc: {:.4f}".format(epoch, train_loss, train_acc, eval_loss, eval_acc))
         
         if best_acc < eval_acc:
             best_acc = eval_acc
@@ -104,5 +104,9 @@ def main(args):
     
 if __name__ == "__main__":
     args = parse_args()
+    print(args)
     set_seed(args.seed)
+    start_time = time.time()
     main(args)
+    end_time = time.time()
+    print(f"Total time taken: {end_time - start_time} seconds")
