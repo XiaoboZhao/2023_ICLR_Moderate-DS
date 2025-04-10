@@ -22,7 +22,7 @@ def get_dataset(args, transform, train=True):
     data = args.dataset
     
     if data == "CIFAR100":
-        dataset = CIFAR100(root=args.data, train=train, transform=transform)
+        dataset = CIFAR100(root=args.data, download=True, train=train, transform=transform)
     elif data == "CIFAR100A":
         dataset = CIFAR100Attack(root=args.data, train=train, transform=transform)
     elif data == "CIFAR100N":
