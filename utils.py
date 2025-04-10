@@ -1,4 +1,4 @@
-from datasets.dataset import CIFAR100, CIFAR100Attack,\
+from .datasets.dataset import CIFAR100, CIFAR100Attack,\
      CIFAR100Corrupt, CIFAR100NoisyCore, CIFAR100AttackCore,\
         CIFAR100Noisy, CIFAR100Core, CIFAR100CorruptCore
 from datasets.dataset import TinyNoisy, TinyAttack, TinyAttackCore, TinyNoisyCore
