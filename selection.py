@@ -39,8 +39,18 @@ def get_features(args):
     model.load_state_dict(torch.load(args.ckpt, map_location="cpu"))
     model = model.to(args.device)
     
-    TRAIN_MEAN = [0.50707, 0.48654, 0.44091] if "CIFAR100" in args.dataset else [0.4802, 0.4481, 0.3975]
-    TRAIN_STD = [0.26733, 0.25643, 0.27615] if "CIFAR100" in args.dataset else [0.2302, 0.2265, 0.2262]
+    if "CIFAR10" in args.dataset:
+        TRAIN_MEAN = [0.49139968, 0.48215841, 0.44653091]
+        TRAIN_STD = [0.24703223, 0.24348513, 0.26158784]
+    elif "CIFAR100" in args.dataset:
+        TRAIN_MEAN = [0.50707, 0.48654, 0.44091]
+        TRAIN_STD = [0.26733, 0.25643, 0.27615]
+    else:
+        TRAIN_MEAN = [0.4802, 0.4481, 0.3975]
+        TRAIN_STD = [0.2302, 0.2265, 0.2262]
+        
+    # TRAIN_MEAN = [0.50707, 0.48654, 0.44091] if "CIFAR100" in args.dataset else [0.4802, 0.4481, 0.3975]
+    # TRAIN_STD = [0.26733, 0.25643, 0.27615] if "CIFAR100" in args.dataset else [0.2302, 0.2265, 0.2262]
     
     transform = transforms.Compose([
         transforms.ToTensor(),

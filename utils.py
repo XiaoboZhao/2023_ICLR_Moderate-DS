@@ -197,7 +197,13 @@ def set_seed(seed):
 
 def get_extractor(args):
     model_name = args.arch
-    num_classes = 100 if "CIFAR100" in args.dataset else 200
+    
+    if "CIFAR10" in args.dataset:
+        num_classes = 10
+    elif "CIFAR100" in args.dataset:
+        num_classes = 100
+    elif "tiny" in args.dataset:
+        num_classes = 200
     
     if model_name == "resnet50":
         model = ResNet50Extractor(num_classes)
