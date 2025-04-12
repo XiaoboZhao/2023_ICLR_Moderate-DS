@@ -1,4 +1,4 @@
-from datasets.dataset import CIFAR100, CIFAR100Attack,\
+from datasets.dataset import CIFAR10, CIFAR100, CIFAR100Attack,\
      CIFAR100Corrupt, CIFAR100NoisyCore, CIFAR100AttackCore,\
         CIFAR100Noisy, CIFAR100Core, CIFAR100CorruptCore
 from datasets.dataset import TinyNoisy, TinyAttack, TinyAttackCore, TinyNoisyCore
@@ -21,7 +21,9 @@ import os
 def get_dataset(args, transform, train=True):
     data = args.dataset
     
-    if data == "CIFAR100":
+    if data == "CIFAR10":
+        dataset = CIFAR10(root=args.data, download=True, train=train, transform=transform)
+    elif data == "CIFAR100":
         dataset = CIFAR100(root=args.data, download=True, train=train, transform=transform)
     elif data == "CIFAR100A":
         dataset = CIFAR100Attack(root=args.data, train=train, transform=transform)
