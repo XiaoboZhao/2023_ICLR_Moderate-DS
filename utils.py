@@ -112,6 +112,26 @@ def get_optimizer_and_scheduler(args, model):
 
 def get_transforms(args, train=True):
     data = args.dataset
+
+    if 'CIFAR10' in data:
+        TRAIN_MEAN = [0.49139968, 0.48215841, 0.44653091]
+        TRAIN_STD = [0.24703223, 0.24348513, 0.26158784]
+        
+        train_transform = transforms.Compose([
+            transforms.RandomCrop(32, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize(TRAIN_MEAN, TRAIN_STD),
+        ])
+        test_transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize(TRAIN_MEAN, TRAIN_STD),
+        ])
+        
+        if train:
+            transform = train_transform
+        else:
+            transform = test_transform
     
     if "CIFAR100" in data:
         TRAIN_MEAN = [0.50707, 0.48654, 0.44091]
