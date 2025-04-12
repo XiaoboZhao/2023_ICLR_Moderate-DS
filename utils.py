@@ -133,7 +133,7 @@ def get_transforms(args, train=True):
         else:
             transform = test_transform
     
-    if "CIFAR100" in data:
+    elif "CIFAR100" in data:
         TRAIN_MEAN = [0.50707, 0.48654, 0.44091]
         TRAIN_STD = [0.26733, 0.25643, 0.27615]
         
