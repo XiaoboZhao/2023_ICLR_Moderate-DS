@@ -70,7 +70,9 @@ def get_coreset(args, transform, drop_id):
 
 def get_model(args):
     model_name = args.arch
-    if "CIFAR100" in args.dataset:
+    if "CIFAR10" in args.dataset:
+        num_classes = 10
+    elif "CIFAR100" in args.dataset:
         num_classes = 100
     elif "tiny" in args.dataset:
         num_classes = 200
