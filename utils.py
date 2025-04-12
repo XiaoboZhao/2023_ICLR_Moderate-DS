@@ -1,4 +1,4 @@
-from datasets.dataset import CIFAR10, CIFAR100, CIFAR100Attack,\
+from datasets.dataset import CIFAR10, CIFAR10Core, CIFAR100, CIFAR100Attack,\
      CIFAR100Corrupt, CIFAR100NoisyCore, CIFAR100AttackCore,\
         CIFAR100Noisy, CIFAR100Core, CIFAR100CorruptCore
 from datasets.dataset import TinyNoisy, TinyAttack, TinyAttackCore, TinyNoisyCore
@@ -48,7 +48,9 @@ def get_dataset(args, transform, train=True):
 def get_coreset(args, transform, drop_id):
     data = args.dataset
     
-    if data == "CIFAR100":
+    if data == "CIFAR10":
+        dataset = CIFAR10Core(root=args.data, train=True, transform=transform, drop_id=drop_id)
+    elif data == "CIFAR100":
         dataset = CIFAR100Core(root=args.data, train=True, transform=transform, drop_id=drop_id)
     elif data == "CIFAR100A":
         dataset = CIFAR100AttackCore(root=args.data, train=True, transform=transform, drop_id=drop_id)
@@ -197,7 +199,7 @@ def set_seed(seed):
 
 def get_extractor(args):
     model_name = args.arch
-    
+
     if "CIFAR10" in args.dataset:
         num_classes = 10
     elif "CIFAR100" in args.dataset:

@@ -168,6 +168,12 @@ class CIFAR100(CIFAR10):
         "md5": "7973b15100ade9c7d40fb424638fde48",
     }
 
+class CIFAR10Core(CIFAR10):
+    def __init__(self, drop_id, **kwargs):
+        super().__init__(**kwargs)
+        self.data = np.delete(self.data, drop_id, axis=0)
+        self.targets = np.array(self.targets)
+        self.targets = np.delete(self.targets, drop_id, axis=0)
 
 class CIFAR100Core(CIFAR100):
     """
